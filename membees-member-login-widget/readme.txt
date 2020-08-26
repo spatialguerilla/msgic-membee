@@ -2,8 +2,8 @@
 Contributors: DaleAB, achilles_sm
 Tags: membership, login, members, membee, social, authentication
 Requires at least: 2.7.0
-Tested up to: 5.3.2
-Stable tag: 2.1.5
+Tested up to: 5.5
+Stable tag: 2.1.7
 Add member authentication and access role management to your WordPress site via Membee's powerful Member Single Sign-On web service
 
 == Description ==
@@ -76,6 +76,12 @@ Easy. In Membee, just create the role and then assign it to a group ( a list of 
 No. The Membee Login plugin supports Membee's full member single sign-on service. So, a member can choose to login to access "members only" content and then decide to update the member profile in Membee's Profile widget and Membee knows who they are and presents their member profile to them for updating. Yes, the reverse scenario works too!
 
 == Changelog ==
+
+= 2.1.7 = 
+* Tested for compatibility with WordPress 5.5.
+
+= 2.1.6 = 
+* Tested for compatibility with WordPress 5.4.
 
 = 2.1.5 = 
 * Fixed another minor non-performance related PHP syntax error caused by a deprecated function.
@@ -207,6 +213,14 @@ No. The Membee Login plugin supports Membee's full member single sign-on service
 
 
 == Upgrade Notice ==
+
+= 2.1.7 = 
+* Tested for compatibility with WordPress 5.5.
+IMPORTANT: If you have the WordPress Access Control plugin installed, it is now redundant (since version 2.0.6 of Membee's plugin).  Be sure to deactivate and delete the WordPress Access Control plugin before updating to this newest version of Membee Login. This version of Membee Login includes the capability to specify whether a page, post, or custom post type is set to Members Only.
+
+= 2.1.6 = 
+* Tested for compatibility with WordPress 5.4.
+IMPORTANT: If you have the WordPress Access Control plugin installed, it is now redundant (since version 2.0.6 of Membee's plugin).  Be sure to deactivate and delete the WordPress Access Control plugin before updating to this newest version of Membee Login. This version of Membee Login includes the capability to specify whether a page, post, or custom post type is set to Members Only.
 
 = 2.1.5 = 
 * Fixed another minor non-performance related PHP syntax error caused by a deprecated function.
