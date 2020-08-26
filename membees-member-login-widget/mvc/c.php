@@ -12,21 +12,21 @@ function process_membee_options() {                           // save Membee opt
 
     $membee_options['membee_client_id'] = intval($_POST['membee_client_id']);
 
-    update_option('membee_client_id', $membee_options['membee_client_id']);
+    update_option('membee_client_id', $membee_options['membee_client_id']);    
 
   } else {
 
-    if (isset($_POST['membee_client_id'])&&((strlen($_POST['membee_client_id'])>10)||(!is_numeric($_POST['membee_client_id'])))) $membee_options['membee_message'] .= 'Client ID you entered is invalid!<br />';
+    if (isset($_POST['membee_client_id'])&&((strlen($_POST['membee_client_id'])>10)||(!is_numeric($_POST['membee_client_id'])))) $membee_options['membee_message'] .= 'Client ID you entered is invalid!<br />';   
 
     $membee_options['membee_client_id'] = get_option('membee_client_id');
 
-  }
+  } 
 
   if ( (isset($_POST['membee_secret'])) && (strip_tags($_POST['membee_secret'])==$_POST['membee_secret']) && ((strlen(trim($_POST['membee_secret'])) == 36)||(strlen(trim($_POST['membee_secret'])) == 0)) && (current_user_can('manage_options')) ) {   // double check length of the secret
 
     $membee_options['membee_secret'] = strip_tags(trim($_POST['membee_secret']));
 
-    update_option('membee_secret', $membee_options['membee_secret']);
+    update_option('membee_secret', $membee_options['membee_secret']);    
 
   } else {
 
@@ -40,17 +40,17 @@ function process_membee_options() {                           // save Membee opt
 
     $membee_options['membee_app_id'] = intval($_POST['membee_app_id']);
 
-    update_option('membee_app_id', $membee_options['membee_app_id']);
+    update_option('membee_app_id', $membee_options['membee_app_id']);    
 
   } else {
 
-    if (isset($_POST['membee_app_id'])&&((strlen($_POST['membee_app_id'])>10)||(!is_numeric($_POST['membee_app_id'])))) $membee_options['membee_message'] .= 'Application ID you entered is invalid!<br />';
+    if (isset($_POST['membee_app_id'])&&((strlen($_POST['membee_app_id'])>10)||(!is_numeric($_POST['membee_app_id'])))) $membee_options['membee_message'] .= 'Application ID you entered is invalid!<br />';   
 
     $membee_options['membee_app_id'] = get_option('membee_app_id');
 
-  }
+  } 
 
-  return $membee_options;
+  return $membee_options; 
 
 }
 
@@ -58,7 +58,7 @@ function process_membee_options() {                           // save Membee opt
 
 function send_get_request($url, $parameters) {                //sending request to Membee server
 
-  if (function_exists('wp_remote_get')) {
+  if (function_exists('wp_remote_get')) {    
 
     $args = array(
 
@@ -80,7 +80,7 @@ function send_get_request($url, $parameters) {                //sending request 
 
       'headers'     => array('Referer'=>get_bloginfo('url'))
 
-    );
+    );    
 
     $parameters = implode('&',$parameters);
 
@@ -92,7 +92,7 @@ function send_get_request($url, $parameters) {                //sending request 
 
       if ((is_wp_error($wp_get))||(!$wp_get['body'])) {
 
-        membee_error_message('An error occured during HTTP GET request: "'.serialize($wp_get).'"');
+        membee_error_message('An error occured during HTTP GET request: "'.serialize($wp_get).'"');        
 
         return false;
 
@@ -116,7 +116,7 @@ function send_get_request($url, $parameters) {                //sending request 
 
     return false;
 
-  }
+  }  
 
 }
 
@@ -124,17 +124,17 @@ function send_get_request($url, $parameters) {                //sending request 
 
 function create_new_user($username, $user_email) {            //create new WP user
 
-  $random_password = wp_generate_password( 12, false );
+  $random_password = wp_generate_password( 12, false );  
 
 	$new_user_id = wp_create_user($username, $random_password, $user_email);
 
   if (is_wp_error($new_user_id)) {
 
-    membee_error_message('An error occured during user creation: "'.serialize($new_user_id).'"');
+    membee_error_message('An error occured during user creation: "'.serialize($new_user_id).'"');        
 
     return false;
 
-  } else {
+  } else {    
 
     return $new_user_id;
 
@@ -148,19 +148,19 @@ function update_user_roles($userdata, $user_id) {             //update user role
 
   $cur_user = new WP_User( $user_id );
 
-  // $cur_user->set_role('subscriber');
+  // $cur_user->set_role('subscriber'); 
 
-  if (count($userdata->Roles)) {
+  if (count($userdata->Roles)) {    
 
-    foreach($userdata->Roles as $role) {
+    foreach($userdata->Roles as $role) {      
 
       $existing_role = get_role(strtolower($role));
 
       if (!$existing_role->name) {
 
-        add_role(strtolower($role), $role);
+        add_role(strtolower($role), $role);       
 
-      }
+      }                        
 
       $cur_user->add_role(strtolower($role));
 
@@ -178,7 +178,7 @@ function update_user_roles($userdata, $user_id) {             //update user role
 
 function sign_user_in($user_id, $username) {                  //sign user in
 
-  global $post;
+  global $post;  
 
   wp_set_auth_cookie($user_id, false);
 
@@ -192,7 +192,7 @@ function sign_user_in($user_id, $username) {                  //sign user in
 
   } else {
 
-    $url = get_bloginfo('url');
+    $url = get_bloginfo('url'); 
 
   }
 
@@ -200,7 +200,7 @@ function sign_user_in($user_id, $username) {                  //sign user in
 
   wp_safe_redirect($url);
 
-  exit;
+  exit;          
 
 }
 
@@ -213,7 +213,7 @@ function prepare_redirect($url) {                             //remove token fro
   parse_str($url['query'], $newquery);
 
   unset($newquery['token']);
-
+  
   $newquery['loggedin'] = 'true';
 
   $newquery = http_build_query($newquery);
@@ -226,7 +226,7 @@ function prepare_redirect($url) {                             //remove token fro
 
     return 'http://'.$_SERVER['HTTP_HOST'].$url['path'];
 
-  }
+  }  
 
 }
 
