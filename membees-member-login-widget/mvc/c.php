@@ -148,7 +148,7 @@ function update_user_roles($userdata, $user_id) {             //update user role
 
   $cur_user = new WP_User( $user_id );
 
-  $cur_user->set_role('subscriber'); 
+  /* $cur_user->set_role('subscriber'); */ 
 
   if (count($userdata->Roles)) {    
 
