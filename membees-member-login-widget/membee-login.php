@@ -2,8 +2,8 @@
 /*
 Plugin Name: Membee Login
 Plugin URI: 
-Description: Plugin to add authentication via Membee Single Sign-On service.
-Version: 2.1.5
+Description: Plugin to add authentication via Membee Member Single Sign-On service.
+Version: 2.2.0
 Author: achilles_sm
 Author URI: https://www.odesk.com/users/~~ea464c4f281cbab8
 License: GPL

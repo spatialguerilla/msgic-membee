@@ -59,6 +59,8 @@ function prepare_user_sign_in($userdata) {
 
     update_user_meta( $user_id, 'first_name', $userdata->FirstName);
 
+    update_user_meta( $user_id, 'nickname', $userdata->FirstName);
+
     update_user_roles($userdata, $user_id);
 
   }  
